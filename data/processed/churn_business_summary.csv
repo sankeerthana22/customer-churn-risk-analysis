@@ -1,0 +1,7 @@
+insight,value
+Overall churn rate,26.54%
+Highest churn contract type,Month-to-month (42.71%)
+Lowest churn contract type,Two year (2.83%)
+Highest churn internet service,Fiber optic (41.89%)
+Highest churn payment method,Electronic check (45.29%)
+Best model by ROC-AUC,Logistic Regression (0.8421)
