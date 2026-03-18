@@ -35,7 +35,8 @@ This enables targeted retention strategies and reduces revenue loss.
 ## Tools Used
 - Python  
 - Pandas  
-- Tableau  
+- Tableau 
+- SQLite  
 - CSV  
 
 ## Dashboard Preview
@@ -88,3 +89,15 @@ Customer churn is a significant business risk in the telecom dataset, with month
    `dashboard/telco-customer-churn-dashboard.twbx`  
 4. Validate outputs using files in `data/processed/`
 
+
+## SQL Analysis
+SQLite queries were used to validate core churn metrics and perform segment-level aggregation.
+
+Key SQL analyses include:
+- total customer count
+- churned customer count
+- overall churn rate
+- churn rate by contract type
+- churn rate by payment method
+
+See `sql/churn_analysis.sql` for the query set used in this project.
