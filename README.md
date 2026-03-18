@@ -51,7 +51,7 @@ This enables targeted retention strategies and reduces revenue loss.
 ## Project Files
 - `dashboard/telco-customer-churn-dashboard.twbx` — Tableau dashboard  
 - `images/telco-customer-churn-dashboard.png` — dashboard preview  
-- `src/` — data cleaning, segmentation, modeling, and summary scripts  
+- `src/` — data cleaning, segmentation, analysis, and summary scripts  
 - `data/` — raw and processed datasets  
 
 ## How to Use
@@ -62,3 +62,29 @@ This enables targeted retention strategies and reduces revenue loss.
 
 ## Conclusion
 Customer churn is a significant business risk in the telecom dataset, with month-to-month customers contributing disproportionately to churn. The dashboard provides a clear, business-oriented view of churn metrics and supports data-driven retention strategies.
+
+## Business Recommendations
+- Encourage migration from month-to-month to longer-term contracts through incentives or bundled pricing.
+- Introduce targeted retention offers for high-risk segments identified in the dashboard.
+- Monitor churn trends by contract and payment method to prioritize intervention strategies.
+
+## Data Dictionary (Key Fields)
+- `Churn` — whether the customer has churned (Yes/No)  
+- `Contract` — contract type (Month-to-month, One year, Two year)  
+- `tenure` — number of months the customer has stayed  
+- `MonthlyCharges` — monthly billing amount  
+- `PaymentMethod` — customer payment type  
+- `InternetService` — type of internet service  
+
+## Limitations
+- Dataset size is limited (~7k records), which may not fully represent large-scale telecom behavior.  
+- Analysis is primarily descriptive and does not include advanced causal inference.  
+- External factors (competitor pricing, customer satisfaction) are not included.
+
+## How to Reproduce
+1. Review raw dataset in `data/raw/`  
+2. Run preprocessing and analysis scripts in `src/`  
+3. Open Tableau dashboard:
+   `dashboard/telco-customer-churn-dashboard.twbx`  
+4. Validate outputs using files in `data/processed/`
+
