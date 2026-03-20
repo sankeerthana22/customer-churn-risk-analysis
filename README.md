@@ -111,7 +111,7 @@ The model identifies **370 high-risk customers** with churn probability greater 
 | Metric | Value |
 |--------|-------|
 | Average Monthly Revenue per Customer | $64.76 |
-| Monthly Revenue at Risk | $23,961.83 |
+| Monthly Revenue At Risk | $23,961.83 |
 | Potential Revenue Saved (10% retention) | $2,396.18 |
 
 ### Insight
@@ -158,6 +158,25 @@ With strong recall and ROC-AUC:
 ### 3. Improve Service Bundles
 - promote security and support services
 - reduce churn driven by service dissatisfaction
+
+---
+
+## Dashboard
+
+### Customer Churn Risk Dashboard
+
+![Customer Churn Risk Dashboard](outputs/dashboard/customer_churn_dashboard.png)
+
+This dashboard highlights:
+
+- churn concentration across customer segments
+- churn patterns by contract, internet service, and payment method
+- risk indicators that support retention strategy decisions
+
+### Tableau Deliverables
+
+- `outputs/dashboard/customer_churn_dashboard.png`
+- `outputs/dashboard/customer_churn_analysis.twbx`
 
 ---
 
