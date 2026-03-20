@@ -165,7 +165,7 @@ With strong recall and ROC-AUC:
 
 ### Customer Churn Risk Dashboard
 
-![Customer Churn Risk Dashboard](outputs/dashboard/customer_churn_dashboard.png)
+![Customer Churn Risk Dashboard](images/telco-customer-churn-dashboard.png)
 
 This dashboard highlights:
 
@@ -173,10 +173,9 @@ This dashboard highlights:
 - churn patterns by contract, internet service, and payment method
 - risk indicators that support retention strategy decisions
 
-### Tableau Deliverables
+### Tableau Deliverable
 
-- `outputs/dashboard/customer_churn_dashboard.png`
-- `outputs/dashboard/customer_churn_analysis.twbx`
+- `dashboard/telco-customer-churn-dashboard.twbx`
 
 ---
 
