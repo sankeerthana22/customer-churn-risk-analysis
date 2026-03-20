@@ -1,103 +1,192 @@
-# Customer Churn Risk Analysis
+# Customer Churn Prediction & Retention Strategy
 
-## Overview
-This project analyzes telecom customer churn data to quantify overall churn risk, identify high-risk customer segments, and present business-ready insights through a Tableau dashboard. The workflow includes data cleaning, segmentation analysis, metric computation, and visualization.
+An end-to-end data analytics and machine learning project analyzing customer churn behavior and developing a predictive model to identify high-risk customers and drive retention-focused business decisions.
 
-## Dataset
-The dataset represents telecom customer information, including contract type, tenure, payment method, internet service, and churn status.  
-- Source: Telco Customer Churn dataset (public dataset)  
-- Size: ~7,000 customer records  
-- Key fields: churn status, contract type, tenure, monthly charges  
+---
+
+## Executive Summary
+
+Customer churn represents a direct threat to recurring revenue and long-term customer lifetime value.
+
+This project moves beyond descriptive churn analysis by:
+
+- identifying key behavioral and contractual drivers of churn
+- building a predictive model to estimate churn probability
+- quantifying revenue at risk
+- translating insights into prioritized retention strategies
+
+Key finding:
+
+> High-risk customers represent approximately **$23,961.83 in monthly revenue at risk**, indicating that targeted retention strategies can deliver significant financial impact.
+
+---
 
 ## Business Problem
-Customer churn directly impacts revenue and growth. Businesses need to understand:
-- how many customers are leaving
-- the overall churn rate
-- which customer segments are most at risk  
 
-This enables targeted retention strategies and reduces revenue loss.
+The business is experiencing customer churn but lacks:
+
+- visibility into which customers are most likely to churn
+- understanding of what factors drive churn behavior
+- a framework to prioritize retention efforts
+
+---
 
 ## Objectives
-- Measure total customers
-- Calculate churned customers
-- Compute overall churn rate
-- Identify churn patterns across contract types
-- Build a business-friendly dashboard for decision-making
 
-## Methodology
-1. Data ingestion from raw CSV dataset  
-2. Data cleaning and preprocessing using Python  
-3. Feature segmentation (contract, payment method, internet service)  
-4. Aggregation of churn metrics  
-5. Export of processed datasets  
-6. Dashboard creation in Tableau  
+1. Identify key drivers of customer churn
+2. Predict churn probability at the customer level
+3. Quantify business impact of churn risk
+4. Recommend data-driven retention strategies
 
-## Tools Used
-- Python  
-- Pandas  
-- Tableau 
-- SQLite  
-- CSV  
+---
 
-## Dashboard Preview
-![Telco Customer Churn Dashboard](images/telco-customer-churn-dashboard.png)
+## Dataset
 
-## Key Insights
-- Total customers: **7,043**  
-- Churned customers: **1,869**  
-- Overall churn rate: **26.54%**  
-- Month-to-month contracts have significantly higher churn rates  
-- Long-term contracts reduce churn risk  
+- Source: Telco Customer Churn dataset
+- Records: 7,043 customers
+- Features: customer demographics, services, billing, contract type
 
-## Project Files
-- `dashboard/telco-customer-churn-dashboard.twbx` — Tableau dashboard  
-- `images/telco-customer-churn-dashboard.png` — dashboard preview  
-- `src/` — data cleaning, segmentation, analysis, and summary scripts  
-- `data/` — raw and processed datasets  
+---
 
-## How to Use
-- Open the Tableau workbook:  
-  `dashboard/telco-customer-churn-dashboard.twbx`  
-- Review processed data in `data/processed/`  
-- Inspect analysis scripts in `src/`  
+## Analytical Approach
+
+### 1. Data Preparation
+- cleaned missing and inconsistent values
+- converted `TotalCharges` to numeric
+- encoded categorical variables
+- removed non-informative identifiers
+
+### 2. Exploratory Analysis
+- churn rates by contract, payment method, and services
+- tenure and monthly charge behavior
+- segment-level churn patterns
+
+### 3. Predictive Modeling
+- logistic regression model
+- stratified train/test split
+- class imbalance handled via weighting
+- pipeline with preprocessing and modeling
+
+---
+
+## Model Performance
+
+| Metric | Value |
+|--------|-------|
+| Accuracy | 73.74% |
+| Precision | 50.34% |
+| Recall | 78.88% |
+| ROC-AUC | 0.8421 |
+
+### Interpretation
+
+The model demonstrates strong ability to identify customers likely to churn.
+
+- High **recall (78.88%)** ensures most churners are captured
+- Moderate precision is acceptable in retention scenarios
+- ROC-AUC of **0.8421** indicates strong predictive separation
+
+---
+
+## Key Drivers of Churn
+
+The model identifies the following as the most influential factors:
+
+### High Churn Risk
+- month-to-month contracts
+- fiber optic internet users
+- electronic check payment method
+- lack of online security and tech support
+
+### Lower Churn Risk
+- two-year contracts
+- customers with bundled services and support
+
+---
+
+## Estimated Business Impact
+
+The model identifies **370 high-risk customers** with churn probability greater than or equal to 70%.
+
+| Metric | Value |
+|--------|-------|
+| Average Monthly Revenue per Customer | $64.76 |
+| Monthly Revenue at Risk | $23,961.83 |
+| Potential Revenue Saved (10% retention) | $2,396.18 |
+
+### Insight
+
+Even modest improvements in retention can generate meaningful revenue protection.
+
+---
+
+## Strategic Decision Insight
+
+The business faces a critical tradeoff:
+
+- invest in acquiring new customers
+- invest in retaining existing customers
+
+Given the concentration of revenue among high-risk customers, this analysis suggests:
+
+> **Retention-focused investment is likely to deliver higher ROI than equivalent acquisition spend.**
+
+---
+
+## Model Use for Decision-Making
+
+With strong recall and ROC-AUC:
+
+- the model is effective for identifying high-risk customers
+- false positives are acceptable given retention campaign economics
+- missing a churner is more costly than targeting a non-churner
+
+---
+
+## Prioritized Action Plan
+
+### 1. Convert Month-to-Month Customers
+- highest churn segment
+- offer incentives for long-term contracts
+- highest impact opportunity
+
+### 2. Target High-Risk Customers
+- use churn probability scoring
+- focus retention efforts on top-risk segments
+- improves campaign efficiency
+
+### 3. Improve Service Bundles
+- promote security and support services
+- reduce churn driven by service dissatisfaction
+
+---
+
+## Project Outputs
+
+- `outputs/tables/churn_model_metrics.csv`
+- `outputs/tables/top_15_churn_drivers.csv`
+- `outputs/tables/customer_churn_scored_sample.csv`
+- `outputs/tables/churn_business_impact_summary.csv`
+- `models/churn_model_summary.json`
+
+---
+
+## Analytical Considerations
+
+- dataset does not include acquisition channel data
+- results are observational, not causal
+- customer behavior may vary seasonally
+- model performance may vary across segments
+
+---
 
 ## Conclusion
-Customer churn is a significant business risk in the telecom dataset, with month-to-month customers contributing disproportionately to churn. The dashboard provides a clear, business-oriented view of churn metrics and supports data-driven retention strategies.
 
-## Business Recommendations
-- Encourage migration from month-to-month to longer-term contracts through incentives or bundled pricing.
-- Introduce targeted retention offers for high-risk segments identified in the dashboard.
-- Monitor churn trends by contract and payment method to prioritize intervention strategies.
+This project demonstrates how churn analysis can be transformed into a decision-making system by combining:
 
-## Data Dictionary (Key Fields)
-- `Churn` — whether the customer has churned (Yes/No)  
-- `Contract` — contract type (Month-to-month, One year, Two year)  
-- `tenure` — number of months the customer has stayed  
-- `MonthlyCharges` — monthly billing amount  
-- `PaymentMethod` — customer payment type  
-- `InternetService` — type of internet service  
+- behavioral analysis
+- predictive modeling
+- business impact estimation
+- strategic prioritization
 
-## Limitations
-- Dataset size is limited (~7k records), which may not fully represent large-scale telecom behavior.  
-- Analysis is primarily descriptive and does not include advanced causal inference.  
-- External factors (competitor pricing, customer satisfaction) are not included.
-
-## How to Reproduce
-1. Review raw dataset in `data/raw/`  
-2. Run preprocessing and analysis scripts in `src/`  
-3. Open Tableau dashboard:
-   `dashboard/telco-customer-churn-dashboard.twbx`  
-4. Validate outputs using files in `data/processed/`
-
-
-## SQL Analysis
-SQLite queries were used to validate core churn metrics and perform segment-level aggregation.
-
-Key SQL analyses include:
-- total customer count
-- churned customer count
-- overall churn rate
-- churn rate by contract type
-- churn rate by payment method
-
-See `sql/churn_analysis.sql` for the query set used in this project.
+The results show that targeted retention strategies can materially reduce revenue loss and improve long-term customer value.
