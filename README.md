@@ -1,71 +1,88 @@
 # Customer Churn Prediction & Retention Strategy
 
-An end-to-end data analytics and machine learning project analyzing customer churn behavior and developing a predictive model to identify high-risk customers and drive retention-focused business decisions.
+An end-to-end data analytics and machine learning project analyzing telecom customer churn behavior, predicting high-risk customers, and translating findings into retention-focused business decisions.
 
 ---
 
 ## Executive Summary
 
-Customer churn represents a direct threat to recurring revenue and long-term customer lifetime value.
+Customer churn is a direct threat to recurring revenue and long-term customer value.
 
 This project moves beyond descriptive churn analysis by:
 
 - identifying key behavioral and contractual drivers of churn
-- building a predictive model to estimate churn probability
-- quantifying revenue at risk
-- translating insights into prioritized retention strategies
+- building a logistic regression model to predict churn probability
+- estimating revenue at risk from high-risk customers
+- recommending prioritized retention actions
 
-Key finding:
+### Headline Findings
 
-> High-risk customers represent approximately **$23,961.83 in monthly revenue at risk**, indicating that targeted retention strategies can deliver significant financial impact.
+- **ROC-AUC:** 0.8421
+- **Recall:** 78.88%
+- **370** customers identified as high-risk
+- **$23,961.83** estimated monthly revenue at risk
+- **$2,396.18** potential monthly revenue saved if 10% of high-risk customers are retained
 
 ---
 
 ## Business Problem
 
-The business is experiencing customer churn but lacks:
+The telecom business needs to understand:
 
-- visibility into which customers are most likely to churn
-- understanding of what factors drive churn behavior
-- a framework to prioritize retention efforts
+- which customers are most likely to churn
+- what factors drive churn risk
+- how churn risk translates into revenue exposure
+- which retention actions should be prioritized first
+
+Without this visibility, retention spending is broad, inefficient, and less likely to protect high-value customers.
 
 ---
 
 ## Objectives
 
-1. Identify key drivers of customer churn
+1. Identify the strongest drivers of churn
 2. Predict churn probability at the customer level
-3. Quantify business impact of churn risk
+3. Estimate business impact of churn risk
 4. Recommend data-driven retention strategies
 
 ---
 
 ## Dataset
 
-- Source: Telco Customer Churn dataset
-- Records: 7,043 customers
-- Features: customer demographics, services, billing, contract type
+- **Source:** Telco Customer Churn dataset
+- **Records:** 7,043 customers
+- **Features:** demographics, services, billing, contract type, churn status
+
+Key variables include:
+
+- `Contract`
+- `tenure`
+- `MonthlyCharges`
+- `PaymentMethod`
+- `InternetService`
+- `Churn`
 
 ---
 
 ## Analytical Approach
 
 ### 1. Data Preparation
-- cleaned missing and inconsistent values
+- cleaned and validated customer records
 - converted `TotalCharges` to numeric
-- encoded categorical variables
 - removed non-informative identifiers
+- prepared categorical and numeric features for modeling
 
-### 2. Exploratory Analysis
-- churn rates by contract, payment method, and services
-- tenure and monthly charge behavior
-- segment-level churn patterns
+### 2. Exploratory Churn Analysis
+- churn rate by contract type
+- churn rate by payment method
+- churn rate by internet service
+- average tenure and monthly charges by churn status
 
 ### 3. Predictive Modeling
 - logistic regression model
 - stratified train/test split
-- class imbalance handled via weighting
-- pipeline with preprocessing and modeling
+- balanced class weighting
+- preprocessing pipeline with one-hot encoding and imputation
 
 ---
 
@@ -80,43 +97,46 @@ The business is experiencing customer churn but lacks:
 
 ### Interpretation
 
-The model demonstrates strong ability to identify customers likely to churn.
+The model performs well for retention use cases:
 
-- High **recall (78.88%)** ensures most churners are captured
-- Moderate precision is acceptable in retention scenarios
-- ROC-AUC of **0.8421** indicates strong predictive separation
+- high recall helps capture most likely churners
+- moderate precision is acceptable when retention campaigns can tolerate some false positives
+- ROC-AUC of 0.8421 indicates strong separation between churn and non-churn customers
+
+In this context, missing a true churner is more costly than contacting a customer who may not churn.
 
 ---
 
 ## Key Drivers of Churn
 
-The model identifies the following as the most influential factors:
-
-### High Churn Risk
+### Higher Churn Risk
 - month-to-month contracts
 - fiber optic internet users
 - electronic check payment method
-- lack of online security and tech support
+- customers without online security
+- customers without tech support
 
 ### Lower Churn Risk
 - two-year contracts
-- customers with bundled services and support
+- customers with support and bundled services
+
+These patterns suggest that contract structure, support services, and billing behavior are central to churn risk.
 
 ---
 
 ## Estimated Business Impact
 
-The model identifies **370 high-risk customers** with churn probability greater than or equal to 70%.
+The model identified **370 high-risk customers** with churn probability greater than or equal to 70%.
 
 | Metric | Value |
 |--------|-------|
 | Average Monthly Revenue per Customer | $64.76 |
-| Monthly Revenue At Risk | $23,961.83 |
-| Potential Revenue Saved (10% retention) | $2,396.18 |
+| Monthly Revenue at Risk | $23,961.83 |
+| Potential Monthly Revenue Saved (10% retained) | $2,396.18 |
 
-### Insight
+### Strategic Insight
 
-Even modest improvements in retention can generate meaningful revenue protection.
+Even modest retention improvements can protect meaningful recurring revenue. This makes churn prediction useful not just for analysis, but for revenue-focused decision-making.
 
 ---
 
@@ -124,40 +144,28 @@ Even modest improvements in retention can generate meaningful revenue protection
 
 The business faces a critical tradeoff:
 
-- invest in acquiring new customers
-- invest in retaining existing customers
+- invest more in acquiring new customers
+- invest more in retaining existing customers
 
-Given the concentration of revenue among high-risk customers, this analysis suggests:
+Given the volume of revenue attached to high-risk customers, this analysis suggests that:
 
 > **Retention-focused investment is likely to deliver higher ROI than equivalent acquisition spend.**
-
----
-
-## Model Use for Decision-Making
-
-With strong recall and ROC-AUC:
-
-- the model is effective for identifying high-risk customers
-- false positives are acceptable given retention campaign economics
-- missing a churner is more costly than targeting a non-churner
 
 ---
 
 ## Prioritized Action Plan
 
 ### 1. Convert Month-to-Month Customers
-- highest churn segment
-- offer incentives for long-term contracts
-- highest impact opportunity
+- highest churn-risk segment
+- strongest contract-related intervention opportunity
 
-### 2. Target High-Risk Customers
-- use churn probability scoring
-- focus retention efforts on top-risk segments
-- improves campaign efficiency
+### 2. Target High-Risk Customers Using Churn Scores
+- focus campaigns on customers with the highest predicted churn probability
+- improve retention efficiency and reduce wasted effort
 
-### 3. Improve Service Bundles
-- promote security and support services
-- reduce churn driven by service dissatisfaction
+### 3. Improve Service Bundle Retention
+- promote online security and tech support bundles
+- address service-related churn drivers
 
 ---
 
@@ -169,9 +177,10 @@ With strong recall and ROC-AUC:
 
 This dashboard highlights:
 
-- churn concentration across customer segments
-- churn patterns by contract, internet service, and payment method
-- risk indicators that support retention strategy decisions
+- overall churn KPIs
+- churn concentration across contract types
+- churn patterns by payment method and internet service
+- business-facing segment insights for retention planning
 
 ### Tableau Deliverable
 
@@ -182,6 +191,8 @@ This dashboard highlights:
 ## Project Outputs
 
 - `outputs/tables/churn_model_metrics.csv`
+- `outputs/tables/churn_confusion_matrix.csv`
+- `outputs/tables/churn_classification_report.csv`
 - `outputs/tables/top_15_churn_drivers.csv`
 - `outputs/tables/customer_churn_scored_sample.csv`
 - `outputs/tables/churn_business_impact_summary.csv`
@@ -189,22 +200,38 @@ This dashboard highlights:
 
 ---
 
+## SQL Analysis
+
+SQLite queries were used to validate core churn metrics and segment-level business questions, including:
+
+- total customers
+- churned customers
+- overall churn rate
+- churn rate by contract type
+- churn rate by payment method
+
+See `sql/churn_analysis.sql`.
+
+---
+
 ## Analytical Considerations
 
-- dataset does not include acquisition channel data
-- results are observational, not causal
-- customer behavior may vary seasonally
-- model performance may vary across segments
+- the dataset does not include acquisition channel or customer satisfaction data
+- results are observational rather than causal
+- churn behavior may vary over time or across unobserved factors
+- model performance may differ across customer subsegments
 
 ---
 
 ## Conclusion
 
-This project demonstrates how churn analysis can be transformed into a decision-making system by combining:
+This project transforms churn analysis from a descriptive dashboard into a decision-support system by combining:
 
-- behavioral analysis
+- churn segmentation
 - predictive modeling
 - business impact estimation
-- strategic prioritization
+- retention prioritization
 
-The results show that targeted retention strategies can materially reduce revenue loss and improve long-term customer value.
+The core conclusion is clear:
+
+**Targeted retention actions can materially reduce revenue loss and should be prioritized over broad, untargeted churn interventions.**
