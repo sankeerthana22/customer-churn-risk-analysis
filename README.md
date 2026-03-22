@@ -155,7 +155,7 @@ Even modest retention gains can protect meaningful recurring revenue. This makes
 
 ### Customer Churn Risk Dashboard
 
-![Customer Churn Risk Dashboard](images/telco-customer-churn-dashboard.png)
+![Customer Churn Risk Dashboard](images/customer_churn_overview.png)
 
 This dashboard highlights:
 
